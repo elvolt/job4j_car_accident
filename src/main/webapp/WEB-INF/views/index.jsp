@@ -16,16 +16,23 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-3">
+            <h1>Accidents</h1>
             <table class="table table-bordered border-primary">
                 <thead>
                 <tr>
-                    <th scope="col">Strings</th>
+                    <th scope="col">ID</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Text</th>
+                    <th scope="col">Address</th>
                 </tr>
                 </thead>
                 <tbody>
-                <c:forEach var="string" items="${strings}">
+                <c:forEach var="accident" items="${accidents}">
                     <tr>
-                        <td><c:out value="${string}"/></td>
+                        <td><c:out value="${accident.getId()}"/></td>
+                        <td><c:out value="${accident.getName()}"/></td>
+                        <td><c:out value="${accident.getText()}"/></td>
+                        <td><c:out value="${accident.getAddress()}"/></td>
                     </tr>
                 </c:forEach>
                 </tbody>
