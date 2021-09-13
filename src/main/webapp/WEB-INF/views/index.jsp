@@ -9,30 +9,33 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
-
-    <title>Accident</title>
+    <script src="https://kit.fontawesome.com/0a16ec4483.js" crossorigin="anonymous"></script>
+    <title>Инциденты</title>
 </head>
 <body>
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-3">
-            <h1>Accidents</h1>
-            <table class="table table-bordered border-primary">
+        <div class="col-7">
+            <h1 class="h2 text-center">Инциденты</h1>
+            <a class="btn btn-primary my-2" role="button" href="<c:url value='/create'/>"><i
+                    class="fas fa-car-crash"></i> Добавить инцидент</a>
+            <table class="table table-hover">
                 <thead>
                 <tr>
-                    <th scope="col">ID</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Text</th>
-                    <th scope="col">Address</th>
+                    <th scope="col">Название</th>
+                    <th scope="col">Адрес</th>
+                    <th scope="col">Описание</th>
+                    <th scope="col"></th>
                 </tr>
                 </thead>
                 <tbody>
                 <c:forEach var="accident" items="${accidents}">
                     <tr>
-                        <td><c:out value="${accident.getId()}"/></td>
                         <td><c:out value="${accident.getName()}"/></td>
-                        <td><c:out value="${accident.getText()}"/></td>
                         <td><c:out value="${accident.getAddress()}"/></td>
+                        <td><c:out value="${accident.getText()}"/></td>
+                        <td><a class="btn btn-light" role="button" href="<c:url value='/update?id=${accident.id}'/>"><i
+                                class="far fa-edit"></i></a></td>
                     </tr>
                 </c:forEach>
                 </tbody>

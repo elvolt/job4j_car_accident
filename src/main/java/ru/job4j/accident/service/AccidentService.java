@@ -6,4 +6,6 @@ import java.util.Collection;
 
 public interface AccidentService {
     Collection<Accident> getAllAccidents();
+
+    void saveAccident(Accident accident);
 }

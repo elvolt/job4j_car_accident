@@ -18,4 +18,9 @@ public class AccidentServiceImpl implements AccidentService {
     public Collection<Accident> getAllAccidents() {
         return store.getAllAccidents();
     }
+
+    @Override
+    public void saveAccident(Accident accident) {
+        store.saveAccident(accident);
+    }
 }
