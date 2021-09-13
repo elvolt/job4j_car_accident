@@ -10,10 +10,9 @@ import java.util.stream.IntStream;
 
 @Repository
 public class AccidentMem implements Store {
-    private final Map<Integer, Accident> accidents;
+    private final Map<Integer, Accident> accidents = new HashMap<>();
 
     public AccidentMem() {
-        accidents = new HashMap<>();
         IntStream.rangeClosed(1, 10)
                 .forEach(i -> accidents.put(i,
                         new Accident(i, "Name " + i, "Text " + i, "Address " + i)));
