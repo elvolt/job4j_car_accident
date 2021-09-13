@@ -23,4 +23,9 @@ public class AccidentServiceImpl implements AccidentService {
     public void saveAccident(Accident accident) {
         store.saveAccident(accident);
     }
+
+    @Override
+    public Accident findAccidentById(int id) {
+        return store.findAccidentById(id);
+    }
 }

@@ -14,7 +14,7 @@ public class AccidentMem implements Store {
     private int size = 0;
 
     public AccidentMem() {
-        IntStream.rangeClosed(1, 10)
+        IntStream.rangeClosed(0, 10)
                 .forEach(i -> {
                     accidents.put(i,
                             new Accident(size, "Name " + i, "Text " + i, "Address " + i));
@@ -29,7 +29,14 @@ public class AccidentMem implements Store {
 
     @Override
     public void saveAccident(Accident accident) {
-        accident.setId(size);
-        accidents.put(size, accident);
+        if (accident.getId() == 0) {
+            accident.setId(size);
+        }
+        accidents.put(accident.getId(), accident);
+    }
+
+    @Override
+    public Accident findAccidentById(int id) {
+        return accidents.get(id);
     }
 }

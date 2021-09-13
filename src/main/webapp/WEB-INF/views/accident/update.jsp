@@ -16,19 +16,20 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-7">
-            <h1 class="h2 text-center">Создание инцидента</h1>
-            <form action="<c:url value="/save"/>" method="post">
+            <h1 class="h2 text-center">Редактирование инцидента</h1>
+            <form action="<c:url value='/save?id=${accident.id}'/>" method="post">
                 <div class="mb-3">
                     <label for="name" class="form-label">Название</label>
-                    <input type="text" class="form-control" id="name" name="name" required>
+                    <input type="text" value="${accident.name}" class="form-control" id="name" name="name" required>
                 </div>
                 <div class="mb-3">
                     <label for="address" class="form-label">Адрес</label>
-                    <input type="text" class="form-control" id="address" name="address" required>
+                    <input type="text" value="${accident.address}" class="form-control" id="address" name="address"
+                           required>
                 </div>
                 <div class="mb-3">
                     <label for="description" class="form-label">Описание</label>
-                    <textarea rows="3" class="form-control" id="description" name="text" required></textarea>
+                    <textarea rows="3" class="form-control" id="description" name="text" required>${accident.text}</textarea>
                 </div>
                 <button type="submit" class="btn btn-primary">Отправить</button>
             </form>
