@@ -41,6 +41,25 @@
                     </select>
                 </div>
                 <div class="mb-3">
+                    <label class="form-label" for="rule">Статьи</label>
+                    <select class="form-select" id="rule" name="ruleIds" multiple>
+                        <c:forEach var="rule" items="${rules}">
+                            <c:set var = "selected" value="false"/>
+                            <c:forEach var="accidentRule" items="${accident.rules}">
+                                <c:if test="${rule.id == accidentRule.id}">
+                                    <c:set var = "selected" value="true"/>
+                                </c:if>
+                            </c:forEach>
+                            <c:if test="${selected == true}">
+                                <option value="${rule.id}" selected>${rule.name}</option>
+                            </c:if>
+                            <c:if test="${selected != true}">
+                                <option value="${rule.id}">${rule.name}</option>
+                            </c:if>
+                        </c:forEach>
+                    </select>
+                </div>
+                <div class="mb-3">
                     <label for="description" class="form-label">Описание</label>
                     <textarea rows="3" class="form-control" id="description" name="text" required>${accident.text}</textarea>
                 </div>

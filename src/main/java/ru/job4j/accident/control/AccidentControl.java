@@ -8,9 +8,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import ru.job4j.accident.model.Accident;
 import ru.job4j.accident.model.AccidentType;
+import ru.job4j.accident.model.Rule;
 import ru.job4j.accident.service.AccidentService;
 
 import java.util.Collection;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Controller
 public class AccidentControl {
@@ -26,8 +30,14 @@ public class AccidentControl {
     }
 
     @PostMapping("/save")
-    public String save(@ModelAttribute Accident accident, @RequestParam("typeId") String typeId) {
-        accident.setType(service.findAccidentTypeById(Integer.parseInt(typeId)));
+    public String save(@ModelAttribute Accident accident,
+                       @RequestParam("typeId") int typeId,
+                       @RequestParam("ruleIds") List<Integer> ruleIds) {
+        accident.setType(service.findAccidentTypeById(typeId));
+        Set<Rule> rules = ruleIds.stream()
+                .map(service::findRuleById)
+                .collect(Collectors.toSet());
+        accident.setRules(rules);
         service.saveAccident(accident);
         return "redirect:/";
     }
@@ -42,5 +52,11 @@ public class AccidentControl {
     public void addTypes(Model model) {
         Collection<AccidentType> types = service.getAllAccidentTypes();
         model.addAttribute("types", types);
+    }
+
+    @ModelAttribute
+    public void addRules(Model model) {
+        Collection<Rule> rules = service.getAllRules();
+        model.addAttribute("rules", rules);
     }
 }

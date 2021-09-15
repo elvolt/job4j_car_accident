@@ -35,6 +35,14 @@
                     </select>
                 </div>
                 <div class="mb-3">
+                    <label class="form-label" for="rule">Статьи</label>
+                    <select class="form-select" id="rule" name="ruleIds" multiple>
+                        <c:forEach var="rule" items="${rules}" >
+                            <option value="${rule.id}">${rule.name}</option>
+                        </c:forEach>
+                    </select>
+                </div>
+                <div class="mb-3">
                     <label for="description" class="form-label">Описание</label>
                     <textarea rows="3" class="form-control" id="description" name="text" required></textarea>
                 </div>

@@ -3,6 +3,7 @@ package ru.job4j.accident.service;
 import org.springframework.stereotype.Service;
 import ru.job4j.accident.model.Accident;
 import ru.job4j.accident.model.AccidentType;
+import ru.job4j.accident.model.Rule;
 import ru.job4j.accident.repository.Store;
 
 import java.util.Collection;
@@ -38,5 +39,15 @@ public class AccidentServiceImpl implements AccidentService {
     @Override
     public AccidentType findAccidentTypeById(int id) {
         return store.findAccidentTypeById(id);
+    }
+
+    @Override
+    public Collection<Rule> getAllRules() {
+        return store.getAllRules();
+    }
+
+    @Override
+    public Rule findRuleById(int id) {
+        return store.findRuleById(id);
     }
 }
