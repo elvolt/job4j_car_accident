@@ -24,6 +24,7 @@
                 <tr>
                     <th scope="col">Название</th>
                     <th scope="col">Адрес</th>
+                    <th scope="col">Тип</th>
                     <th scope="col">Описание</th>
                     <th scope="col"></th>
                 </tr>
@@ -31,9 +32,10 @@
                 <tbody>
                 <c:forEach var="accident" items="${accidents}">
                     <tr>
-                        <td><c:out value="${accident.getName()}"/></td>
-                        <td><c:out value="${accident.getAddress()}"/></td>
-                        <td><c:out value="${accident.getText()}"/></td>
+                        <td><c:out value="${accident.name}"/></td>
+                        <td><c:out value="${accident.address}"/></td>
+                        <td><c:out value="${accident.type.name}"/></td>
+                        <td><c:out value="${accident.text}"/></td>
                         <td><a class="btn btn-light" role="button" href="<c:url value='/update?id=${accident.id}'/>"><i
                                 class="far fa-edit"></i></a></td>
                     </tr>

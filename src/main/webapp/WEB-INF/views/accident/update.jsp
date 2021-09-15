@@ -28,6 +28,19 @@
                            required>
                 </div>
                 <div class="mb-3">
+                    <label class="form-label" for="type">Тип</label>
+                    <select class="form-select" id="type" name="typeId">
+                        <c:forEach var="type" items="${types}" >
+                            <c:if test="${type.id == accident.type.id}">
+                                <option value="${type.id}" selected>${type.name}</option>
+                            </c:if>
+                            <c:if test="${type.id != accident.type.id}">
+                                <option value="${type.id}">${type.name}</option>
+                            </c:if>
+                        </c:forEach>
+                    </select>
+                </div>
+                <div class="mb-3">
                     <label for="description" class="form-label">Описание</label>
                     <textarea rows="3" class="form-control" id="description" name="text" required>${accident.text}</textarea>
                 </div>

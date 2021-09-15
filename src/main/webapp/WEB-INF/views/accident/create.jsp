@@ -27,6 +27,14 @@
                     <input type="text" class="form-control" id="address" name="address" required>
                 </div>
                 <div class="mb-3">
+                    <label class="form-label" for="type">Тип</label>
+                    <select class="form-select" id="type" name="typeId">
+                        <c:forEach var="type" items="${types}" >
+                            <option value="${type.id}">${type.name}</option>
+                        </c:forEach>
+                    </select>
+                </div>
+                <div class="mb-3">
                     <label for="description" class="form-label">Описание</label>
                     <textarea rows="3" class="form-control" id="description" name="text" required></textarea>
                 </div>
