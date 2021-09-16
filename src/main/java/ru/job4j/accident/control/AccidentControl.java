@@ -33,12 +33,7 @@ public class AccidentControl {
     public String save(@ModelAttribute Accident accident,
                        @RequestParam("typeId") int typeId,
                        @RequestParam("ruleIds") List<Integer> ruleIds) {
-        accident.setType(service.findAccidentTypeById(typeId));
-        Set<Rule> rules = ruleIds.stream()
-                .map(service::findRuleById)
-                .collect(Collectors.toSet());
-        accident.setRules(rules);
-        service.saveAccident(accident);
+        service.saveAccident(accident, typeId, ruleIds);
         return "redirect:/";
     }
 

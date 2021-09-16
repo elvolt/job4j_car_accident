@@ -7,6 +7,9 @@ import ru.job4j.accident.model.Rule;
 import ru.job4j.accident.repository.Store;
 
 import java.util.Collection;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 public class AccidentServiceImpl implements AccidentService {
@@ -22,7 +25,12 @@ public class AccidentServiceImpl implements AccidentService {
     }
 
     @Override
-    public void saveAccident(Accident accident) {
+    public void saveAccident(Accident accident, int typeId, List<Integer> ruleIds) {
+        accident.setType(findAccidentTypeById(typeId));
+        Set<Rule> rules = ruleIds.stream()
+                .map(this::findRuleById)
+                .collect(Collectors.toSet());
+        accident.setRules(rules);
         store.saveAccident(accident);
     }
 

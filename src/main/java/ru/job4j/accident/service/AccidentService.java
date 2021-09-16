@@ -5,11 +5,12 @@ import ru.job4j.accident.model.AccidentType;
 import ru.job4j.accident.model.Rule;
 
 import java.util.Collection;
+import java.util.List;
 
 public interface AccidentService {
     Collection<Accident> getAllAccidents();
 
-    void saveAccident(Accident accident);
+    void saveAccident(Accident accident, int typeId, List<Integer> ruleIds);
 
     Accident findAccidentById(int id);
 
