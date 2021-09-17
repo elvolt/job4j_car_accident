@@ -29,8 +29,8 @@
                 </div>
                 <div class="mb-3">
                     <label class="form-label" for="type">Тип</label>
-                    <select class="form-select" id="type" name="typeId">
-                        <c:forEach var="type" items="${types}" >
+                    <select class="form-select" id="type" name="typeId" required>
+                        <c:forEach var="type" items="${types}">
                             <c:if test="${type.id == accident.type.id}">
                                 <option value="${type.id}" selected>${type.name}</option>
                             </c:if>
@@ -42,7 +42,7 @@
                 </div>
                 <div class="mb-3">
                     <label class="form-label" for="rule">Статьи</label>
-                    <select class="form-select" id="rule" name="ruleIds" multiple>
+                    <select class="form-select" id="rule" name="ruleIds" multiple required>
                         <c:forEach var="rule" items="${rules}">
                             <c:set var = "selected" value="false"/>
                             <c:forEach var="accidentRule" items="${accident.rules}">

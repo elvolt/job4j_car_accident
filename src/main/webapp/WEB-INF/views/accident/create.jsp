@@ -28,7 +28,7 @@
                 </div>
                 <div class="mb-3">
                     <label class="form-label" for="type">Тип</label>
-                    <select class="form-select" id="type" name="typeId">
+                    <select class="form-select" id="type" name="typeId" required>
                         <c:forEach var="type" items="${types}" >
                             <option value="${type.id}">${type.name}</option>
                         </c:forEach>
@@ -36,7 +36,7 @@
                 </div>
                 <div class="mb-3">
                     <label class="form-label" for="rule">Статьи</label>
-                    <select class="form-select" id="rule" name="ruleIds" multiple>
+                    <select class="form-select" id="rule" name="ruleIds" multiple required>
                         <c:forEach var="rule" items="${rules}" >
                             <option value="${rule.id}">${rule.name}</option>
                         </c:forEach>
