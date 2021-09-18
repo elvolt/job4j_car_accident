@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 public class AccidentServiceImpl implements AccidentService {
     private final Store store;
 
-    public AccidentServiceImpl(@Qualifier("accidentJdbcTemplate") Store store) {
+    public AccidentServiceImpl(@Qualifier("accidentHibernate") Store store) {
         this.store = store;
     }
 

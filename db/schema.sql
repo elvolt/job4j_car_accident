@@ -25,3 +25,13 @@ CREATE TABLE IF NOT EXISTS accident_rule
     rule_id     INT REFERENCES rule (id),
     PRIMARY KEY (accident_id, rule_id)
 );
+
+INSERT INTO type (name)
+VALUES ('Две машины'),
+       ('Машина и человек'),
+       ('Машина и велосипед');
+
+INSERT INTO rule (name)
+VALUES ('Статья 1'),
+       ('Статья 2'),
+       ('Статья 3');
