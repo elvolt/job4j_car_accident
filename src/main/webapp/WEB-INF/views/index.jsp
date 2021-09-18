@@ -15,7 +15,7 @@
 <body>
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-8">
+        <div class="col-10">
             <h1 class="h2 text-center">Инциденты</h1>
             <a class="btn btn-primary my-2" role="button" href="<c:url value='/create'/>"><i
                     class="fas fa-car-crash"></i> Добавить инцидент</a>

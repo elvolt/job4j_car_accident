@@ -1,28 +1,35 @@
 package ru.job4j.accident.service;
 
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import ru.job4j.accident.model.Accident;
 import ru.job4j.accident.model.AccidentType;
 import ru.job4j.accident.model.Rule;
-import ru.job4j.accident.repository.Store;
+import ru.job4j.accident.repository.springdata.AccidentRepository;
+import ru.job4j.accident.repository.springdata.AccidentTypesRepository;
+import ru.job4j.accident.repository.springdata.RuleRepository;
 
-import java.util.Collection;
-import java.util.List;
-import java.util.Set;
+import javax.transaction.Transactional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
+@Transactional
 public class AccidentServiceImpl implements AccidentService {
-    private final Store store;
+    private final AccidentRepository accidentRepository;
+    private final AccidentTypesRepository accidentTypesRepository;
+    private final RuleRepository ruleRepository;
 
-    public AccidentServiceImpl(@Qualifier("accidentHibernate") Store store) {
-        this.store = store;
+    public AccidentServiceImpl(AccidentRepository accidentRepository,
+                               AccidentTypesRepository accidentTypesRepository,
+                               RuleRepository ruleRepository) {
+        this.accidentRepository = accidentRepository;
+        this.accidentTypesRepository = accidentTypesRepository;
+        this.ruleRepository = ruleRepository;
     }
 
     @Override
     public Collection<Accident> getAllAccidents() {
-        return store.getAllAccidents();
+        return (Collection<Accident>) accidentRepository.findAll();
     }
 
     @Override
@@ -32,31 +39,43 @@ public class AccidentServiceImpl implements AccidentService {
                 .map(this::findRuleById)
                 .collect(Collectors.toSet());
         accident.setRules(rules);
-        store.saveAccident(accident);
+        accidentRepository.save(accident);
     }
 
     @Override
     public Accident findAccidentById(int id) {
-        return store.findAccidentById(id);
+        Optional<Accident> result =  accidentRepository.findById(id);
+        if (result.isEmpty()) {
+            throw new NoSuchElementException("Accident not found");
+        }
+        return result.get();
     }
 
     @Override
     public Collection<AccidentType> getAllAccidentTypes() {
-        return store.getAllAccidentTypes();
+        return (Collection<AccidentType>) accidentTypesRepository.findAll();
     }
 
     @Override
     public AccidentType findAccidentTypeById(int id) {
-        return store.findAccidentTypeById(id);
+        Optional<AccidentType> result =  accidentTypesRepository.findById(id);
+        if (result.isEmpty()) {
+            throw new NoSuchElementException("AccidentType not found");
+        }
+        return result.get();
     }
 
     @Override
     public Collection<Rule> getAllRules() {
-        return store.getAllRules();
+        return (Collection<Rule>) ruleRepository.findAll();
     }
 
     @Override
     public Rule findRuleById(int id) {
-        return store.findRuleById(id);
+        Optional<Rule> result =  ruleRepository.findById(id);
+        if (result.isEmpty()) {
+            throw new NoSuchElementException("Rule not found");
+        }
+        return result.get();
     }
 }
