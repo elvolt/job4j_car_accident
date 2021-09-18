@@ -19,6 +19,8 @@
             <h1 class="h2 text-center">Инциденты</h1>
             <a class="btn btn-primary my-2" role="button" href="<c:url value='/create'/>"><i
                     class="fas fa-car-crash"></i> Добавить инцидент</a>
+            <a class="btn btn-primary my-2 float-end" role="button" href="<c:url value='/logout'/>"><i
+                    class="fas fa-door-open"></i> Выйти</a>
             <table class="table table-hover">
                 <thead>
                 <tr>
