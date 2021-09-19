@@ -9,10 +9,10 @@ import java.util.Optional;
 
 public interface AccidentRepository extends CrudRepository<Accident, Integer> {
     @Override
-    @Query("select distinct a from Accident a join fetch a.rules order by a.id")
+    @Query("select distinct a from Accident a join fetch a.type join fetch a.rules order by a.id")
     Iterable<Accident> findAll();
 
     @Override
-    @Query("select a from Accident a join fetch a.rules where a.id = :paramId")
+    @Query("select a from Accident a join fetch a.type join fetch a.rules where a.id = :paramId")
     Optional<Accident> findById(@Param("paramId") Integer id);
 }
