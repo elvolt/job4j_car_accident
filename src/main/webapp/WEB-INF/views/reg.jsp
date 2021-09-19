@@ -10,18 +10,13 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/0a16ec4483.js" crossorigin="anonymous"></script>
-    <title>Вход</title>
+    <title>Регистрация</title>
 </head>
 <body>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-4">
-            <c:if test="${not empty errorMessage}">
-                <div class="" style="color:#ff0000; font-weight: bold; margin: 30px 0px;">
-                        ${errorMessage}
-                </div>
-            </c:if>
-            <form name='login' action="<c:url value='/login'/>" method='POST'>
+            <form name='login' action="<c:url value='/reg'/>" method='POST'>
                 <div class="mb-3">
                     <label for="username" class="form-label">Имя</label>
                     <input type="text" class="form-control" id="username" name="username" required>
@@ -30,9 +25,7 @@
                     <label for="password" class="form-label">Пароль</label>
                     <input type="password" class="form-control" id="password" name="password" required>
                 </div>
-                <button type="submit" class="btn btn-primary">Войти</button>
-                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                <a class="float-end" href="<c:url value='/reg'/>">Зарегистрироваться</a>
+                <button type="submit" class="btn btn-primary">Зарегистрироваться</button>
             </form>
         </div>
     </div>
