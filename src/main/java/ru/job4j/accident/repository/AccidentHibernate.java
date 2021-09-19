@@ -38,7 +38,10 @@ public class AccidentHibernate implements Store {
     public Collection<Accident> getAllAccidents() {
         return tx(
                 session -> session.createQuery(
-                        "select distinct a from Accident a join fetch a.rules order by a.id",
+                        "select distinct a from Accident a "
+                                + "join fetch a.rules "
+                                + "join fetch a.type "
+                                + "order by a.id",
                         Accident.class
                 ).list()
         );
@@ -67,7 +70,10 @@ public class AccidentHibernate implements Store {
     public Accident findAccidentById(int id) {
         return tx(session ->
                 session.createQuery(
-                        "select a from Accident a join fetch a.rules where a.id =: paramId",
+                        "select a from Accident a "
+                                + "join fetch a.rules "
+                                + "join fetch a.type "
+                                + "where a.id =: paramId",
                         Accident.class)
                         .setParameter("paramId", id)
                         .uniqueResult());

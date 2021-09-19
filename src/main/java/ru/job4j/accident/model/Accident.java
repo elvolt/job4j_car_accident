@@ -12,7 +12,7 @@ public class Accident {
     private String name;
     private String text;
     private String address;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "type_id")
     private AccidentType type;
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
